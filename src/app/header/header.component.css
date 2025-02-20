@@ -1,0 +1,13 @@
+/* .navbar-toggler { */
+    /* border-color: white; */
+    /* background-color:bisque; */
+/* } */
+.navbar-toggler-icon {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/9053/9053268.png');
+    transition: 0.5s;
+}
+.navbar-toggler-icon:hover {
+    transition: ease-in-out 0.5s;
+    /* transform: translate(0px,5px); */
+    scale: 1.5;
+}

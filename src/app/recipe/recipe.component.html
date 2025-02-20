@@ -1,0 +1,76 @@
+<app-header></app-header>
+<div class="container my-3 bg-black rounded-5">
+    <div class="row">
+
+        <div class="col-lg-4">
+            <div class="container mt-2">
+                <h4>Filter</h4>
+                <button class="btn btn-success my-3" (click)="getAllRecipes()">All</button><br>
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Cuisine Type
+                </button>
+                <div class="collapse" id="collapseExample">
+
+                    @for (item of cuisineArray; track $index) {
+                    <button (click)="filterRecipes('cuisine',item)" class="btn text-secondary">{{item}}</button>
+                    }
+
+                </div> <br>
+
+                <button class="btn btn-primary dropdown-toggle my-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                    Meals Type
+                </button>
+                <div class="collapse2" id="collapseExample2">
+
+                    @for (items of mealsTypeArray; track $index) {
+
+                    <button (click)="filterRecipes('mealType',items)" class="btn text-secondary">{{items}}</button>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-8">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="fw-bolder">All recipes</h1>
+                <input type="text" [(ngModel)]="searchKey" placeholder="Search your Recipes Here!!"
+                    class="form-control w-50" name="" id="">
+            </div>
+
+            <div class="row my-3">
+
+                @if (allRecipes.length>0) {
+
+                @for (recipes of allRecipes | search:searchKey | paginate: { itemsPerPage: 6, currentPage: p }; track
+                $index) {
+
+                <div class="col-lg-4">
+                    <div class="recipe-img p-3">
+                        <img (click)="viewRecipe(recipes._id)" class="card-img-top rounded" [src]="recipes.image" alt="">
+                        <div class="card-body mt-2">
+                            <h5>{{recipes.name}}</h5>
+                            <p>Cuisine : {{recipes.cuisine}}</p>
+                        </div>
+                    </div>
+                </div>
+                }
+                @if ((allRecipes|search:searchKey).length==0) {
+
+                <div class="fw-bolder my-5 text-danger text-center">Recipes not found</div>
+                }
+                }@else {
+                <div class="fw-bolder my-5 text-danger text-center">Recipes not found</div>
+                }
+            </div>
+        </div>
+
+    </div>
+    <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<app-footer></app-footer>

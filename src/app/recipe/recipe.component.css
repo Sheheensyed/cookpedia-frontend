@@ -1,0 +1,8 @@
+.recipe-img {
+    transition: 0.5s;
+}
+
+.recipe-img:hover {
+    transition: ease-in-out 0.5s;
+    scale: 1.1;
+}

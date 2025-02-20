@@ -1,0 +1,122 @@
+<app-header></app-header>
+
+<div class="container w-100 my-3">
+
+    <div class="row p-5 bg-black rounded-5">
+        <div class=" col-lg-2"></div>
+        <div class="col-lg-4">
+                <h1 class="">The Easiest Way <br> To Make Your <br> Favorite Meal</h1>
+                <p class="mt-3">Discover 100+ recipes in your hand with the best recipe. Help you to find the easiest
+                    way to cook</p>
+                <button routerLink="/recipes" class="btn btn-success rounded-4 mt-3">Explore Our Recipes</button>
+        </div>
+
+        <div class="col-lg-6 d-flex justify-content-center">
+            <img src="https://cu-media.imgix.net/media/catalog/product/cache/x1200/f/u/fusilli_with_cauliflower__capers__olives_and_sundried_tomato_-_forgione_1_.jpg?height=800&width=800&fit=crop&format=webp&cs=tinysrgb&lossless=true?w=3840"
+                alt="" class="w-50 landingImg" style="border-radius: 50%;">
+        </div>
+    </div>
+
+    <!-- popular recipe -->
+
+    <div class="my-5 p-5">
+        <h1 class="text-black">Popular Recipe of the Week</h1>
+        <div class="d-flex justify-content-between">
+            <p class="text-black">Our Most popular recipe of the week</p>
+            <a routerLink="/recipes" class="">View more</a>
+        </div>
+        <div class="row my-5 flip-box">
+
+            @for (recipes of allRecipes; track $index) {
+
+                <div class="col-lg-4 flip-box-inner mt-2">
+                    <div class="p-3 recipeCard flip-box-front">
+                        <img class="card-img-top rounded-2"
+                            [src]='recipes.image'
+                            alt="">
+                        <div class="card-body mt-2">
+                            <h5 class="text-black text-center">{{recipes.name}}</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="row align-items-center my-5"
+        style="background-image: url(https://foodsquare.co.in/wp-content/uploads/2015/11/Homepage-Banner-4.jpg);background-position: center;background-repeat: no-repeat;background-size: cover;height: 400px;">
+        <div class="col-lg-6 p-5 d-flex justify-content-center">
+            <div class="bg-black rounded-5 p-5 w-75">
+                <h2>50+ Recipe That Very Quick And Fast</h2>
+                <p>Find the perfect food ideas to start your day with the quick and easiest way</p>
+            </div>
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+
+    <!-- Download -->
+    <div class="my-5 row align-items-center text-light rounded p-5 bg-black rounded-5">
+
+        <div class="col-lg-6 d-flex justify-content-center">
+            <img src="assets/devices.png" class="" height="320" alt="">
+        </div>
+        <div class="col-lg-6 text-center mb-5">
+            <h1>Download app</h1>
+            <h5>Download the app from app store or <br> Google play for a better experience</h5>
+            <img src="https://freepngimg.com/download/android/67006-app-play-google-android-store-free-clipart-hd.png"
+                width="150px" alt="">
+            <img src="https://benic360.com/wp-content/uploads/2020/06/apple-store-icon-png-8.png" width="150px" alt="">
+        </div>
+    </div>
+
+    <!-- Testimonial -->
+    <div class="my-5 p-5 bg-black rounded-5">
+
+        <h1 class="text-center">Client testimonials</h1>
+        <marquee behavior="" direction="" [scrollAmount]="10">
+            <div class="d-flex my-5">
+                <div class="rounded border w-25 p-3 me-2">
+                    <p style="white-space: normal; width: 100%;text-align: justify;">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus reprehenderit libero iste
+                        tempora ratione ad voluptatem enim nulla exercitationem impedit quod atque, nemo quos recusandae
+                        soluta veritatis aut reiciendis similique?
+                    </p>
+
+                </div>
+                <div class="rounded border w-25 p-3 me-2">
+                    <p style="white-space: normal; width: 100%;text-align: justify;">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus reprehenderit libero iste
+                        tempora ratione ad voluptatem enim nulla exercitationem impedit quod atque, nemo quos recusandae
+                        soluta veritatis aut reiciendis similique?
+                    </p>
+
+                </div>
+                <div class="rounded border w-25 p-3 me-2">
+                    <p style="white-space: normal; width: 100%;text-align: justify;">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus reprehenderit libero iste
+                        tempora ratione ad voluptatem enim nulla exercitationem impedit quod atque, nemo quos recusandae
+                        soluta veritatis aut reiciendis similique?
+                    </p>
+
+                </div>
+                <div class="rounded border w-25 p-3 me-2">
+                    <p style="white-space: normal; width: 100%;text-align: justify;">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus reprehenderit libero iste
+                        tempora ratione ad voluptatem enim nulla exercitationem impedit quod atque, nemo quos recusandae
+                        soluta veritatis aut reiciendis similique?
+                    </p>
+
+                </div>
+            </div>
+        </marquee>
+    </div>
+
+
+</div>
+
+
+
+<app-footer></app-footer>

@@ -1,0 +1,8 @@
+#aboutImg{
+    transition: 2s;
+}
+#aboutImg:hover{
+transition: ease-in-out 1s;
+rotate: 180deg;
+scale: 1.1;
+}
