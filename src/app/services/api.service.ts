@@ -71,8 +71,28 @@ export class ApiService {
   }
 
   // api to user-edit
-  editUserApi(reqBody:any){
-    return this.http.post(`${this.server_url}/user/edit`,reqBody,this.appendToken())
+  editUserApi(reqBody: any) {
+    return this.http.post(`${this.server_url}/user/edit`, reqBody, this.appendToken())
+  }
+
+  // api to get all users
+  allUserApi() {
+    return this.http.get(`${this.server_url}/all-users`, this.appendToken())
+  }
+
+  // api to get all users
+  allDownloadListApi() {
+    return this.http.get(`${this.server_url}/download-list`, this.appendToken())
+  }
+
+  // api to get all feedback
+  allFeedbackApi() {
+    return this.http.get(`${this.server_url}/testimonials`, this.appendToken())
+  }
+
+  //http://localhost:4000/feedback/67addaa394e64bea63dad1a3/update?status=Approved
+  updateFeedBackStatusApi(feedbackId: string, status: string) {
+    return this.http.get(`${this.server_url}/feedback/${feedbackId}/update?status=${status}`,this.appendToken())
   }
 
 }
