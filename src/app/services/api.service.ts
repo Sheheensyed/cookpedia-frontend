@@ -45,4 +45,34 @@ export class ApiService {
   similarRecipeApi(cuisine: any) {
     return this.http.get(`${this.server_url}/related-recipes?cuisine=${cuisine}`, this.appendToken())
   }
+
+  // api to download recipe
+  downloadRecipeApi(recipeId: any, reqBody: any) {
+    return this.http.post(`${this.server_url}/recipe/${recipeId}/download`, reqBody, this.appendToken())
+  }
+  // api to save recipe
+  saveRecipeApi(recipeId: any, reqBody: any) {
+    return this.http.post(`${this.server_url}/recipe/${recipeId}/save`, reqBody, this.appendToken())
+  }
+
+  // api to get user saved recipe
+  getUserSavedRecipesApi() {
+    return this.http.get(`${this.server_url}/get-save-recipes`, this.appendToken())
+  }
+
+  // delete saved recipe
+  deleteSavedRecipeApi(id: string) {
+    return this.http.delete(`${this.server_url}/save-recipes/${id}/remove`, this.appendToken())
+  }
+
+  // api to get user recipe download list
+  getDownloadListApi() {
+    return this.http.get(`${this.server_url}/user-downloads`, this.appendToken())
+  }
+
+  // api to user-edit
+  editUserApi(reqBody:any){
+    return this.http.post(`${this.server_url}/user/edit`,reqBody,this.appendToken())
+  }
+
 }

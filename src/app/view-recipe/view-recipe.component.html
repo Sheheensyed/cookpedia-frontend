@@ -7,8 +7,8 @@
             <img class="img-fluid rounded-5 my-5" [src]="recipe.image" alt="">
 
             <div class="d-flex justify-content-between">
-                <button class="btn btn-success text-capitalize">Download the recipe</button>
-                <button class="btn btn-info text-capitalize text-light">Save the recipe</button>
+                <button (click)="downloadRecipe()" class="btn btn-success text-capitalize">Download the recipe</button>
+                <button (click)="saveRecipe()" class="btn btn-info text-capitalize text-light">Save the recipe</button>
             </div>
         </div>
         <div class="col-md-6">
