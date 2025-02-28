@@ -1,8 +1,67 @@
 <div class="row">
+    @if (isBarOpen) {
+
     <div class="col-lg-2">
         <app-aside></app-aside>
     </div>
-    <div class="col-lg-10">
-        <p>Dashboard works</p>
+    }
+    <div [class]="columnWidth">
+
+
+        <div class="p-3">
+            <div class="row bg-black text-light p-2 mx-2 rounded-5">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3><button (click)="menuButton()" class="btn"><i
+                                class="fa-solid fa-bars me-2 fs-3"></i></button>Welcome to Admin Dashboard</h3>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle me-2 rounded-5" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li class="d-flex justify-content-center align-items-center"><button (click)="logout()"
+                                    class="btn w-75">Logout <i
+                                        class="fa-solid fa-person-walking-arrow-right text-black"></i></button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- metrics -->
+            <div class="d-flex justify-content-evenly my-4">
+                <!-- users -->
+                <div class="d-flex align-items-center p-3 rounded-4 text-light bg-info">
+                    <i class="fa-solid fa-users fa-3x me-3"></i>
+                    <div>
+                        <h3 class="">Users</h3>
+                        <h2 class=" text-center">{{userCount}}</h2>
+                    </div>
+                </div>
+                <!-- recipes -->
+                <div class="d-flex align-items-center p-3 rounded-4 text-light bg bg-primary">
+                    <i class="fa-solid fa-bowl-food fa-3x me-3"></i>
+                    <div>
+                        <h3 class="">Recipes</h3>
+                        <h2 class=" text-center">{{recipeCount}}</h2>
+                    </div>
+                </div>
+                <!-- downloads -->
+                <div class="d-flex align-items-center p-3 rounded-4 text-light bg bg-danger">
+                    <i class="fa-solid fa-download fa-3x me-3"></i>
+                    <div>
+                        <h3 class="">Downloads</h3>
+                        <h2 class=" text-center">{{downloadCount}}</h2>
+                    </div>
+                </div>
+                <!-- notification -->
+                <div class="d-flex align-items-center p-3 rounded-4 text-light bg bg-secondary">
+                    <i class="fa-solid fa-message fa-3x me-3"></i>
+                    <div>
+                        <h3 class="">Notification</h3>
+                        <h6 class="">You have <a routerLink="/admin/request-list">{{requestCount}}</a> new request</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

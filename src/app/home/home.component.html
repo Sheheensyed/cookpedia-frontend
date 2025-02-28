@@ -76,40 +76,20 @@
     <div class="my-5 p-5 bg-black rounded-5">
 
         <h1 class="text-center">Client testimonials</h1>
-        <marquee behavior="" direction="" [scrollAmount]="10">
+        <marquee behavior="alternate" direction="" [scrollAmount]="10">
             <div class="d-flex my-5">
-                <div class="rounded border w-25 p-3 me-2">
-                    <p style="white-space: normal; width: 100%;text-align: justify;">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus reprehenderit libero iste
-                        tempora ratione ad voluptatem enim nulla exercitationem impedit quod atque, nemo quos recusandae
-                        soluta veritatis aut reiciendis similique?
-                    </p>
 
-                </div>
-                <div class="rounded border w-25 p-3 me-2">
-                    <p style="white-space: normal; width: 100%;text-align: justify;">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus reprehenderit libero iste
-                        tempora ratione ad voluptatem enim nulla exercitationem impedit quod atque, nemo quos recusandae
-                        soluta veritatis aut reiciendis similique?
-                    </p>
+                @for (item of feedback; track $index) {
 
-                </div>
-                <div class="rounded border w-25 p-3 me-2">
-                    <p style="white-space: normal; width: 100%;text-align: justify;">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus reprehenderit libero iste
-                        tempora ratione ad voluptatem enim nulla exercitationem impedit quod atque, nemo quos recusandae
-                        soluta veritatis aut reiciendis similique?
-                    </p>
-
-                </div>
-                <div class="rounded border w-25 p-3 me-2">
-                    <p style="white-space: normal; width: 100%;text-align: justify;">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus reprehenderit libero iste
-                        tempora ratione ad voluptatem enim nulla exercitationem impedit quod atque, nemo quos recusandae
-                        soluta veritatis aut reiciendis similique?
-                    </p>
-
-                </div>
+                    <div class="rounded border w-25 p-3 me-4">
+                        <p>{{item.name}}</p>
+                        <h5 style="white-space: normal; width: 100%;text-align: justify;">
+                        {{item.message}}
+                        </h5>
+    
+                    </div>
+                }
+                
             </div>
         </marquee>
     </div>

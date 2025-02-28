@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { RecipeModel } from '../admin/model/recipeModel';
 
 @Injectable({
   providedIn: 'root'
@@ -95,4 +96,21 @@ export class ApiService {
     return this.http.get(`${this.server_url}/feedback/${feedbackId}/update?status=${status}`,this.appendToken())
   }
 
+  // api to get approved feedback
+  approvedFeedbackApi(){
+    return this.http.get(`${this.server_url}/approved-feedback`)
+  }
+
+  // Api to add recipe
+  addRecipeApi(reqBody:any){
+    return this.http.post(`${this.server_url}/add-recipe`,reqBody,this.appendToken())
+  }
+
+  editRecipeApi(id:string,reqBody:RecipeModel){
+    return this.http.put(`${this.server_url}/recipe/${id}/edit`,reqBody,this.appendToken())
+  }
+
+  deleteRecipeApi(id:string){
+    return this.http.delete(`${this.server_url}/recipe/${id}/delete`,this.appendToken())
+  }
 }

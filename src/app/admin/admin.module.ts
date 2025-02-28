@@ -11,6 +11,8 @@ import { FeedbackListComponent } from './feedback-list/feedback-list.component';
 import { AsideComponent } from './aside/aside.component';
 import { DemoComponent } from './demo/demo.component';
 import { FrontPageComponent } from './front-page/front-page.component';
+import { FormsModule } from '@angular/forms';
+import { SearchPipe } from '../pipes/search.pipe';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { FrontPageComponent } from './front-page/front-page.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
+    SearchPipe
   ]
 })
 export class AdminModule { }

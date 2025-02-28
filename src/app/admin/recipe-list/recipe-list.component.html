@@ -3,5 +3,48 @@
         <app-aside></app-aside>
     </div>
     <div class="col-lg-10">
+        <h1 class="text-black my-3 fw-bold">All recipe</h1>
+        <div class="d-flex justify-content-between my-2">
+            <button routerLink="/admin/recipe/add" class="text-capitalize btn btn-primary">Add new recipe</button>
+            <input [(ngModel)]="searchRecipe" type="text" placeholder="Search recipe" class="form-control w-25" name=""
+                id="">
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-capitalize text-center">#</th>
+                    <th class="text-capitalize text-center">Recipe Name</th>
+                    <th class="text-capitalize text-center">Image</th>
+                    <th class="text-capitalize text-center">Cuisine</th>
+                    <th class="text-capitalize text-center">Add/Edit</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                @for (item of allRecipe | search:searchRecipe; track $index;let i=$index) {
+                <tr>
+                    <td class="text-center">{{i+1}}</td>
+                    <td class="text-center">{{item.name}}</td>
+                    <td class="d-flex justify-content-center"><img class="rounded-5" [src]="item.image" height="50px"
+                            width="50px" alt=""></td>
+                    <td class="text-center">{{item.cuisine}}</td>
+                    <td class="text-center">
+
+                        <button routerLink="/admin/recipe/{{item._id}}/edit"  class="btn me-2"><i class="fa-solid fa-edit text-primary"></i></button>
+                        <button (click)="deleteRecipe(item._id)" class="btn me-2"><i class="fa-solid fa-trash text-danger"></i></button>
+                    </td>
+                </tr>
+                }
+
+                @if ((allRecipe | search : searchRecipe).length==0) {
+                <tr class="d-flex justify-content-center">
+                    <h1 class="text-warning fw-bolder fs-3">Recipe not found</h1>
+                </tr>
+                }
+            </tbody>
+
+        </table>
     </div>
 </div>
