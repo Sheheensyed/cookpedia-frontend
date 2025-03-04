@@ -7,9 +7,8 @@ import { RecipeModel } from '../admin/model/recipeModel';
 })
 export class ApiService {
   server_url = "https://cookpedia-server-jufa.onrender.com"
+  
   constructor(private http: HttpClient) { }
-
-
 
   getAllRecipeApi() {
     return this.http.get(`${this.server_url}/all-recipes`)
