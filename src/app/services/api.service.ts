@@ -6,7 +6,7 @@ import { RecipeModel } from '../admin/model/recipeModel';
   providedIn: 'root'
 })
 export class ApiService {
-  server_url = "http://localhost:4000"
+  server_url = "https://cookpedia-server-jufa.onrender.com"
   constructor(private http: HttpClient) { }
 
 
