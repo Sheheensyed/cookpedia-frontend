@@ -9,6 +9,8 @@ export class ApiService {
   server_url = "http://localhost:4000"
   constructor(private http: HttpClient) { }
 
+
+
   getAllRecipeApi() {
     return this.http.get(`${this.server_url}/all-recipes`)
   }
@@ -93,24 +95,51 @@ export class ApiService {
 
   //http://localhost:4000/feedback/67addaa394e64bea63dad1a3/update?status=Approved
   updateFeedBackStatusApi(feedbackId: string, status: string) {
-    return this.http.get(`${this.server_url}/feedback/${feedbackId}/update?status=${status}`,this.appendToken())
+    return this.http.get(`${this.server_url}/feedback/${feedbackId}/update?status=${status}`, this.appendToken())
   }
 
   // api to get approved feedback
-  approvedFeedbackApi(){
+  approvedFeedbackApi() {
     return this.http.get(`${this.server_url}/approved-feedback`)
   }
 
   // Api to add recipe
-  addRecipeApi(reqBody:any){
-    return this.http.post(`${this.server_url}/add-recipe`,reqBody,this.appendToken())
+  addRecipeApi(reqBody: any) {
+    return this.http.post(`${this.server_url}/add-recipe`, reqBody, this.appendToken())
   }
 
-  editRecipeApi(id:string,reqBody:RecipeModel){
-    return this.http.put(`${this.server_url}/recipe/${id}/edit`,reqBody,this.appendToken())
+  editRecipeApi(id: string, reqBody: RecipeModel) {
+    return this.http.put(`${this.server_url}/recipe/${id}/edit`, reqBody, this.appendToken())
   }
 
-  deleteRecipeApi(id:string){
-    return this.http.delete(`${this.server_url}/recipe/${id}/delete`,this.appendToken())
+  deleteRecipeApi(id: string) {
+    return this.http.delete(`${this.server_url}/recipe/${id}/delete`, this.appendToken())
+  }
+
+  getChartDataApi() {
+    this.allDownloadListApi().subscribe((res: any) => {
+      console.log(res);
+
+      // input : [{recipeCount,count}]
+      // output : [{name:cuisine,y:totalCount}]
+
+      let downloadArrayList: any = []
+      let output: any = {}
+      res.forEach((item: any) => {
+        // item = {recipeCuisine:"Mexican",count:4}
+        let cuisine = item.recipeCuisine // cuisine=mexican
+        let currentCount = item.count // currentCount=4
+        if (output.hasOwnProperty(cuisine)) {
+          output[cuisine] += currentCount
+        } else {
+          output[cuisine] = currentCount // output = {mexican = 4}
+        }
+      })
+      for (let cuisine in output) {
+        downloadArrayList.push({ name: cuisine, y: output[cuisine] })
+      }
+      console.log(downloadArrayList);
+      localStorage.setItem('chart', JSON.stringify(downloadArrayList))
+    })
   }
 }

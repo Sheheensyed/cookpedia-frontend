@@ -13,6 +13,10 @@ import { DemoComponent } from './demo/demo.component';
 import { FrontPageComponent } from './front-page/front-page.component';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../pipes/search.pipe';
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
 @NgModule({
@@ -31,7 +35,13 @@ import { SearchPipe } from '../pipes/search.pipe';
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    SearchPipe
+    SearchPipe,
+    MatNativeDateModule,
+    MatCardModule,
+    MatDatepickerModule,
+    HighchartsChartModule
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+
+}

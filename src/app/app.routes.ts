@@ -9,39 +9,40 @@ import { SaveRecipeComponent } from './save-recipe/save-recipe.component';
 import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { PNFComponent } from './pnf/pnf.component';
+import { authGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
     {
-        path:'admin', loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)
-    }, 
-    {
-        path:'',component:HomeComponent,title:'Home page'
-    }, 
-    {
-        path:'about',component:AboutComponent,title:'About page'
+        path: 'admin', canActivate: [authGuard], loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
     },
     {
-        path:'contact',component:ContactComponent,title:'Contact page'
+        path: '', component: HomeComponent, title: 'Home page'
     },
     {
-        path:'login',component:LoginComponent,title:"Login page"
+        path: 'about', component: AboutComponent, title: 'About page'
     },
     {
-        path:'register',component:RegisterComponent,title:"Register page"
+        path: 'contact', component: ContactComponent, title: 'Contact page'
     },
     {
-        path:'profile',component:ProfileComponent,title:"Profile"
+        path: 'login', component: LoginComponent, title: "Login page"
     },
     {
-        path:'save-recipe',component:SaveRecipeComponent,title:"Save recipe page"
+        path: 'register', component: RegisterComponent, title: "Register page"
     },
     {
-        path:'recipe/:id/view',component:ViewRecipeComponent,title:"View recipe page"
+        path: 'profile', component: ProfileComponent, canActivate: [authGuard], title: "Profile"
     },
     {
-        path:'recipes',component:RecipeComponent,title:"Recipe page"
+        path: 'save-recipe', component: SaveRecipeComponent, canActivate: [authGuard], title: "Save recipe page"
     },
     {
-        path:'**',component:PNFComponent,title:"Page not found"
+        path: 'recipe/:id/view', component: ViewRecipeComponent, canActivate: [authGuard], title: "View recipe page"
     },
+    {
+        path: 'recipes', component: RecipeComponent, title: "Recipe page"
+    },
+    {
+        path: '**', component: PNFComponent, title: "Page not found"
+    }
 ];

@@ -54,6 +54,7 @@ export class ViewRecipeComponent {
 
   downloadRecipe() {
     this.api.downloadRecipeApi(this.recipeId, this.recipe).subscribe((res: any) => {
+      this.api.getChartDataApi()
       this.generatePdf()
     })
   }
@@ -94,16 +95,16 @@ export class ViewRecipeComponent {
     pdf.save(`${this.recipe.name}.pdf`);
   }
 
-  saveRecipe(){
-    this.api.saveRecipeApi(this.recipeId,this.recipe).subscribe({
-      next:(res:any)=>{
-      alert(`Recipe added successfully to your collection`)
+  saveRecipe() {
+    this.api.saveRecipeApi(this.recipeId, this.recipe).subscribe({
+      next: (res: any) => {
+        alert(`Recipe added successfully to your collection`)
       },
-      error:(reason:any)=>{
+      error: (reason: any) => {
         alert(reason.error)
       }
     })
   }
 
- 
+
 }

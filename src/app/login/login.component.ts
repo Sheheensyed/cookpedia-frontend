@@ -7,22 +7,23 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FooterComponent,ReactiveFormsModule],
+  imports: [FooterComponent, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  loginForm:FormGroup;
+  loginForm: FormGroup;
 
-  constructor(private fb:FormBuilder,private api:ApiService,private router:Router){
-    this.loginForm=this.fb.group({
-      email:['',[Validators.required,Validators.email]],
-      password:['',[Validators.required,Validators.pattern(`[a-zA-Z0-9]*`)]]
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(`[a-zA-Z0-9]*`)]]
     })
   }
 
-  login(){
-    if(this.loginForm.valid){
+
+  login() {
+    if (this.loginForm.valid) {
       const email = this.loginForm.value.email
       const password = this.loginForm.value.password
       console.log(`${email}, ${password}`);
@@ -31,12 +32,13 @@ export class LoginComponent {
       this.api.loginApi({ email, password }).subscribe({
 
         next: (res: any) => {
-          sessionStorage.setItem('user',JSON.stringify(res.user))
-          sessionStorage.setItem('token',res.token)
+          sessionStorage.setItem('user', JSON.stringify(res.user))
+          sessionStorage.setItem('token', res.token)
+          this.api.getChartDataApi()
           this.loginForm.reset();
-          if(res.user.role=="User"){
+          if (res.user.role == "User") {
             this.router.navigateByUrl('/')
-          }else{
+          } else {
             //admin panel
             this.router.navigateByUrl('/admin')
 
@@ -44,7 +46,7 @@ export class LoginComponent {
         }
       })
 
-    }else{
+    } else {
       alert(`Invalid form`)
     }
   }

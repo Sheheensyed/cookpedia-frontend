@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import * as Highcharts from 'highcharts';
+
 
 @Component({
   selector: 'app-front-page',
@@ -8,14 +10,53 @@ import { Router } from '@angular/router';
   styleUrl: './front-page.component.css'
 })
 export class FrontPageComponent {
+  selected = new Date()
   isBarOpen: boolean = true
   columnWidth: string = "col-lg-10"
   userCount: number = 0
   recipeCount: number = 0
   downloadCount: number = 0
   requestCount: number = 0
+  Highcharts: typeof Highcharts = Highcharts; // required
+  chartOptions = {}
+ 
 
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(private api: ApiService, private router: Router) {
+    if(localStorage.getItem('chart')){
+      let chartData = JSON.parse(localStorage.getItem('chart') || "")
+      this.chartOptions = {
+        chart: {
+          type: 'bar'
+        },
+        title: {
+          text: "Analysis of Download Based of Cuisine",
+          align: "left"
+        },
+        xAxis: {
+          type: "category"
+        },
+        yAxis: {
+          title: {
+            text: "Total Download recipe count"
+          }
+        },
+        legend: {
+          enabled: false
+        },
+        credits: {
+          enabled: false
+        },
+        series: [{
+          name:"Cuisine",
+          colorByPoint:true,
+          type:"bar",
+          data:chartData
+        }]
+      }
+    }
+  }
+
+  
 
   ngOnInit() {
     this.getUserCount()
@@ -36,7 +77,7 @@ export class FrontPageComponent {
       this.recipeCount = res.length
     })
 
-    // this.api.getDownloadListApi().subscribe((res: any) => {
+    // this.api.allDownloadListApi().subscribe((res: any) => {
     //   this.downloadCount = res.length.map((item:any)=>item.count).reduce((a:any,b:any)=>a+b)
     //   console.log(res);  
     // })
@@ -54,13 +95,6 @@ export class FrontPageComponent {
     })
   }
 
-  // getDownloadCount() {
-  //   this.api.allDownloadListApi().subscribe((res: any) => {
-  //     this.downloadCount = res.map((item: any) => item.count).reduce((a: any, b: any) => a + b)
-  //         console.log(res);
-  //     console.log(this.downloadCount);
-  //   })
-  // }
 
   logout() {
     sessionStorage.clear()
@@ -68,4 +102,6 @@ export class FrontPageComponent {
     this.router.navigateByUrl('/')
 
   }
+
+  
 }

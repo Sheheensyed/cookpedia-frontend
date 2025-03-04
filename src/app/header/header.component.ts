@@ -27,9 +27,9 @@ export class HeaderComponent {
 
   logout() {
     sessionStorage.clear()
+    localStorage.clear()
     this.isLoggedIn=false
     this.loggedUserName=''
     this.router.navigateByUrl('/')
-
   }
 }
